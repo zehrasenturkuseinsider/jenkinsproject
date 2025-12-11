@@ -24,7 +24,7 @@ pipeline {
                 sh '''
                     . venv/bin/activate
                     pytest --junitxml=report.xml --html=report.html || true
-                    'python3 hello.py'
+                    hello.py
       }
                 '''
             }
