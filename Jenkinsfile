@@ -24,20 +24,19 @@ pipeline {
                 sh '''
                     . venv/bin/activate
                     pytest --junitxml=report.xml --html=report.html || true
-                    hello.py
-      }
+                    python3 hello.py
                 '''
             }
+        }
 
-            post {
-                always {
-                    junit 'report.xml'
-                    publishHTML(target: [
-                        reportDir: '.',
-                        reportFiles: 'report.html',
-                        reportName: 'Test Report'
-                    ])
-                }
+        post {
+            always {
+                junit 'report.xml'
+                publishHTML(target: [
+                    reportDir: '.',
+                    reportFiles: 'report.html',
+                    reportName: 'Test Report'
+                ])
             }
         }
     }
