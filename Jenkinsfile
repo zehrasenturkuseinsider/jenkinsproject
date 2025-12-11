@@ -2,9 +2,12 @@ pipeline {
     agent any
 
     stages {
+
         stage('Checkout') {
             steps {
-                git branch: 'main', credentialsId: 'github-token', url: 'https://github.com/zehrasenturkuseinsider/jenkinsproject.git'
+                git branch: 'main',
+                    credentialsId: 'github-token',
+                    url: 'https://github.com/zehrasenturkuseinsider/jenkinsproject.git'
             }
         }
 
@@ -36,3 +39,8 @@ pipeline {
             publishHTML(target: [
                 reportDir: '.',
                 reportFiles: 'report.html',
+                reportName: 'Test Report'
+            ])
+        }
+    }
+}
